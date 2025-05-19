@@ -40,6 +40,7 @@ CREATE TABLE Series (
     title VARCHAR(100) NOT NULL,
     description TEXT,
     release_year INT,
+    end_year INT DEFAULT NULL,
     cover_url VARCHAR(255)
 );
 
@@ -290,49 +291,57 @@ VALUES ('Drama'),
     ('Sci-Fi');
 
 -- Insertar Series
-INSERT INTO
-    Series (
-        title,
-        description,
-        release_year,
-        cover_url
-    )
-VALUES (
-        'Breaking Bad',
-        'Un profesor de química diagnosticado con cáncer inoperable de pulmón recurre a la fabricación y venta de metanfetaminas para asegurar el futuro de su familia.',
-        2008,
-        'https://example.com/series/breaking_bad.jpg'
-    ),
-    (
-        'Game of Thrones',
-        'Nueve familias nobles luchan por el control de las tierras de Poniente, mientras que un antiguo enemigo regresa después de estar inactivo durante milenios.',
-        2011,
-        'https://example.com/series/got.jpg'
-    ),
-    (
-        'How to Get Away with Murder',
-        'Un grupo de ambiciosos estudiantes de derecho y su brillante profesora de defensa criminal se ven envueltos en un retorcido caso de asesinato.',
-        2014,
-        'https://example.com/series/htgawm.jpg'
-    ),
-    (
-        'The Haunting of Hill House',
-        'La historia alterna entre dos líneas temporales, siguiendo a cinco hermanos adultos cuyas experiencias paranormales en Hill House continúan persiguiéndolos.',
-        2018,
-        'https://example.com/series/hill_house.jpg'
-    ),
-    (
-        'When They See Us',
-        'Cinco adolescentes de Harlem quedan atrapados en una pesadilla cuando son acusados falsamente de un ataque brutal en Central Park.',
-        2019,
-        'https://example.com/series/when_they_see_us.jpg'
-    ),
-    (
-        'The Mandalorian',
-        'Las aventuras de un pistolero solitario en los confines de la galaxia, lejos de la autoridad de la Nueva República.',
-        2019,
-        'https://example.com/series/mandalorian.jpg'
-    );
+INSERT INTO Series (
+    title,
+    description,
+    release_year,
+    end_year,
+    cover_url
+)
+VALUES
+(
+    'Breaking Bad',
+    'Un profesor de química diagnosticado con cáncer inoperable de pulmón recurre a la fabricación y venta de metanfetaminas para asegurar el futuro de su familia.',
+    2008,
+    2013,
+    'https://m.media-amazon.com/images/M/MV5BMjI3NjY3Njk3MF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg'
+),
+(
+    'Game of Thrones',
+    'Nueve familias nobles luchan por el control de las tierras de Poniente, mientras que un antiguo enemigo regresa después de estar inactivo durante milenios.',
+    2011,
+    2019,
+    'https://m.media-amazon.com/images/M/MV5BMjE3MzY3NDk4NV5BMl5BanBnXkFtZTgwNzY2NzQ2NzM@._V1_.jpg'
+),
+(
+    'How to Get Away with Murder',
+    'Un grupo de ambiciosos estudiantes de derecho y su brillante profesora de defensa criminal se ven envueltos en un retorcido caso de asesinato.',
+    2014,
+    2020,
+    'https://m.media-amazon.com/images/M/MV5BMTc5MTQ2MTU2N15BMl5BanBnXkFtZTgwNTk2MTc0MzE@._V1_.jpg'
+),
+(
+    'The Haunting of Hill House',
+    'La historia alterna entre dos líneas temporales, siguiendo a cinco hermanos adultos cuyas experiencias paranormales en Hill House continúan persiguiéndolos.',
+    2018,
+    2018,
+    'https://m.media-amazon.com/images/M/MV5BMjA3NDkwMjY5MV5BMl5BanBnXkFtZTgwNzU5MTg2NjM@._V1_.jpg'
+),
+(
+    'When They See Us',
+    'Cinco adolescentes de Harlem quedan atrapados en una pesadilla cuando son acusados falsamente de un ataque brutal en Central Park.',
+    2019,
+    2019,
+    'https://m.media-amazon.com/images/M/MV5BMjA3MjQzNDMwNF5BMl5BanBnXkFtZTgwMDczNTgxNzM@._V1_.jpg'
+),
+(
+    'The Mandalorian',
+    'Las aventuras de un pistolero solitario en los confines de la galaxia, lejos de la autoridad de la Nueva República.',
+    2019,
+    NULL,
+    'https://m.media-amazon.com/images/M/MV5BM2YxYzg3YzYtODg2Yy00ZTI0LWJkZGItZTYxYmRkNmY0ZTFkXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg'
+);
+
 
 -- Insertar relaciones SeriesDirector
 INSERT INTO
