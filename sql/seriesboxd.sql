@@ -286,7 +286,8 @@ VALUES ('Drama'),
     ('Comedia'),
     ('Horror'),
     ('Acción'),
-    ('Aventura');
+    ('Aventura'),
+    ('Sci-Fi');
 
 -- Insertar Series
 INSERT INTO
