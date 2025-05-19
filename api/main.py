@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 # Manejo de errores
 from starlette.exceptions import HTTPException as StarletteHTTPException
@@ -12,6 +13,11 @@ from api import genre_router
 
 # Documentacion
 from api import tags_metadata
+
+# Configuracion de origins permitidos
+origins = [
+    "http://127.0.0.1:5500"
+]
 
 # Apirestful con FastApi
 app = FastAPI(
@@ -29,7 +35,16 @@ app = FastAPI(
     openapi_tags=tags_metadata
 )
 
-# Importacion de rutas
+# Configuracion de CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# IMPORTACION DE RUTAS
 
 # Ruta para las series
 app.include_router(
