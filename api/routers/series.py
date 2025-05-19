@@ -9,7 +9,7 @@ from api import get_db
 from api import SerieModel
 
 # Controller
-from api import serie_controller
+from api import series_controller
 
 # Enrutador para definir los endpoints
 router = APIRouter()
@@ -19,7 +19,7 @@ router = APIRouter()
             summary="Obtiene todas las series"
             )
 async def get_series(db: Session = Depends(get_db)):
-    return await serie_controller.get_series(db)
+    return await series_controller.get_series(db)
 
 # Endpoint para obtener las series estrenadas despues de cierto año
 @router.get("/release_year", response_model=list[SerieModel], status_code=status.HTTP_200_OK,
@@ -30,7 +30,7 @@ async def get_series(db: Session = Depends(get_db)):
             )
 async def get_series_anio(anio: Annotated[int, Query(description="A partir de que año se estrenaron", gt=1980)],
                           db: Session = Depends(get_db)):
-    series_anio = await serie_controller.get_series_anio(anio, db)
+    series_anio = await series_controller.get_series_anio(anio, db)
 
     if not series_anio:
         raise HTTPException(status_code=404, detail=f"No se encontraron series estrenadas despues del año {anio}")
