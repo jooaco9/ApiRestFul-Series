@@ -8,6 +8,7 @@ from fastapi.responses import JSONResponse
 
 # Routers
 from api import serie_router
+from api import genre_router
 
 # Documentacion
 from api import tags_metadata
@@ -29,10 +30,19 @@ app = FastAPI(
 )
 
 # Importacion de rutas
+
+# Ruta para las series
 app.include_router(
     serie_router,
     tags=["series"],
     prefix="/series"
+)
+
+# Ruta para los generos
+app.include_router(
+    genre_router,
+    tags=["generos"],
+    prefix="/generos"
 )
 
 # Manejo de EXCEPCIONES
