@@ -5,8 +5,8 @@ from typing_extensions import Annotated
 # DB
 from api import get_db
 
-# Modelos de DB
-from api import SerieModel
+# Schema
+from api import SerieSchema
 
 # Controller
 from api import series_controller
@@ -15,14 +15,14 @@ from api import series_controller
 router = APIRouter()
 
 # Endopoint para obtener todas las series
-@router.get("/", response_model=list[SerieModel], status_code=status.HTTP_200_OK,
+@router.get("", response_model=list[SerieSchema], status_code=status.HTTP_200_OK,
             summary="Obtiene todas las series"
             )
 async def get_series(db: Session = Depends(get_db)):
     return await series_controller.get_series(db)
 
 # Endpoint para obtener las series estrenadas despues de cierto año
-@router.get("/release_year", response_model=list[SerieModel], status_code=status.HTTP_200_OK,
+@router.get("/release_year", response_model=list[SerieSchema], status_code=status.HTTP_200_OK,
             summary="Obtiene series con filtro de años",
             description="""
                 Devuelve todas las series las cuales se hayan estrenado despues del "anio" puesto como query parameter
