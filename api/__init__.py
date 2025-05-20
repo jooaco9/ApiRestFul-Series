@@ -6,7 +6,12 @@ from api.configdoc import tags_metadata
 
 # Modelos DB
 from api.models.serie_model import Serie as SerieModel
+from api.models.seriesgenres_model import SeriesGenres as SeriesGenresModel
 from api.models.genre_model import Genre as GenreModel
+
+# Schemas
+from api.schemas.serie_schema import Serie as SerieSchema
+from api.schemas.genres_schema import Genre as GenreSchema
 
 # Controladores
 from api.controllers import series_controller
