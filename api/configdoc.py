@@ -7,5 +7,9 @@ tags_metadata = [
     {
         "name": "generos",
         "description": "Operaciones con la tabla de generos"
+    },
+    {
+        "name": "temporadas", 
+        "description": "Operaciones con la tabla de temporadas"
     }
 ]
