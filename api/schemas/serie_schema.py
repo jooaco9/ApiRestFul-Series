@@ -3,6 +3,7 @@ from typing import List
 
 # Modelo Serie
 class Serie(SQLModel):
+    id: int = Field(description="Id de la serie")
     title: str = Field(description="Titulo de la serie")
     description: str = Field(description="Descripcion de la serie")
     release_year: int = Field(description="Anio de la fecha de salida de la serie")

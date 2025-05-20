@@ -11,6 +11,7 @@ def convert_to_series_dict(results):
         # Si la serie no esta la agrego con id como clave
         if serie.id not in series_dict:
             series_dict[serie.id] = SerieSchema(
+                id=serie.id,
                 title=serie.title,
                 description=serie.description,
                 release_year=serie.release_year,
