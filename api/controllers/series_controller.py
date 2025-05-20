@@ -3,16 +3,8 @@ from api import SerieModel, SerieSchema, GenreModel, SeriesGenresModel
 
 # Controller de serie
 
-# Funcion para obtener todas las series
-async def get_series(db):
-    # Consulta para obtener todas las series
-    stmt = (
-        select(SerieModel, GenreModel.name)
-        .join(SeriesGenresModel, SerieModel.id == SeriesGenresModel.serie_id)
-        .join(GenreModel, SeriesGenresModel.genre_id == GenreModel.id)
-    )
-    results = db.exec(stmt).all()
-
+# Funcion para armar la lista con las series y cada genero que tiene
+def convert_to_series_dict(results):
     # Armo diccionario con cada serie con SerieSchema y agrego los generos
     series_dict = {}
     for serie, genre in results:
@@ -32,12 +24,34 @@ async def get_series(db):
     # Retorno una lista pero de los valores del diccionario
     return list(series_dict.values())
 
+# Funcion para obtener todas las series
+async def get_series(db):
+    # Consulta para obtener todas las series
+    stmt = (
+        select(SerieModel, GenreModel.name)
+        .join(SeriesGenresModel, SerieModel.id == SeriesGenresModel.serie_id)
+        .join(GenreModel, SeriesGenresModel.genre_id == GenreModel.id)
+    )
+
+    # Obtengo los resultados
+    results = db.exec(stmt).all()
+
+    # Devuelvo las series
+    return convert_to_series_dict(results)
+
+
 # Funcion parra obtener las series estrenadas despues del "anio"
 async def get_series_anio(anio, db):
     # Consulta para obtener las series mayor al "anio"
-    stmt = select(SerieModel).where(SerieModel.release_year >= anio)
-    results = db.exec(stmt)
-    series_anio = results.all()
+    stmt = (
+        select(SerieModel, GenreModel.name)
+        .join(SeriesGenresModel, SerieModel.id == SeriesGenresModel.serie_id)
+        .join(GenreModel, SeriesGenresModel.genre_id == GenreModel.id)
+        .where(SerieModel.release_year >= anio)
+    )
 
-    # Transformar los resultados al esquema SerieSchema
-    return [SerieSchema(**serie.dict()) for serie in series_anio]
+    # Obtengo los resultados
+    results = db.exec(stmt).all()
+
+    # Devuelvo las series
+    return convert_to_series_dict(results)
