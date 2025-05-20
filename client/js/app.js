@@ -2,7 +2,7 @@
 let seriesList = document.getElementById('series-container');
 
 // Request contra el Apirestful Get series
-fetch("http://localhost:5001/series", {method: "GET"})
+fetch("http://localhost:8000/series", {method: "GET"})
 .then((response) => response.json())
 .then((series) => {	
 	console.log("Series:", series);

@@ -12,7 +12,6 @@ from api.models.season_model import Season as SeasonModel
 
 # Schemas
 from api.schemas.serie_schema import Serie as SerieSchema
-from api.schemas.genres_schema import Genre as GenreSchema
 
 # Controladores
 from api.controllers import series_controller

@@ -6,7 +6,7 @@ from typing_extensions import Annotated
 from api import get_db
 
 # Schema
-from api import GenreSchema
+from api import GenreModel
 
 # Controller
 from api import genres_controller
@@ -15,7 +15,7 @@ from api import genres_controller
 router = APIRouter()
 
 # Endpoint para obtener todos los generos
-@router.get("", response_model=list[GenreSchema], status_code=status.HTTP_200_OK,
+@router.get("", response_model=list[GenreModel], status_code=status.HTTP_200_OK,
             summary="Obtiene todos los generos"
             )
 async def get_genres(db: Session = Depends(get_db)):
