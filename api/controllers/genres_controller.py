@@ -1,5 +1,5 @@
 from sqlmodel import select
-from api import GenreModel
+from api import GenreModel, GenreSchema
 
 # Controller de Generos
 async def get_genres(db):
@@ -8,4 +8,4 @@ async def get_genres(db):
 
     results = db.exec(stmt)
     genres = results.all()
-    return genres
+    return [GenreSchema(**genre.dict()) for genre in genres]
