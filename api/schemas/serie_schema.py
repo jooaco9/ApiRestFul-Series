@@ -10,3 +10,4 @@ class Serie(SQLModel):
     cover_url: str = Field(description="URL de la foto de la serie")
     end_year: int | None = Field(description="Año en el que finalizo la serie, puede ser NULL si esta no está terminada")
     genres: List[str] = Field(description="Lista con todos los generos de la serie")
+    seasons: List[int] = Field(description="Temporadas que tiene la serie")
