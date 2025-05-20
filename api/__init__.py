@@ -8,6 +8,7 @@ from api.configdoc import tags_metadata
 from api.models.serie_model import Serie as SerieModel
 from api.models.seriesgenres_model import SeriesGenres as SeriesGenresModel
 from api.models.genre_model import Genre as GenreModel
+from api.models.season_model import Season as SeasonModel
 
 # Schemas
 from api.schemas.serie_schema import Serie as SerieSchema
@@ -16,10 +17,12 @@ from api.schemas.genres_schema import Genre as GenreSchema
 # Controladores
 from api.controllers import series_controller
 from api.controllers import genres_controller
+from api.controllers import seasons_controller
 
 # Rutas
 from api.routers.series import router as serie_router
 from api.routers.genres import router as genre_router
+from api.routers.seasons import router as season_router
 
 # App
 from api.main import app
